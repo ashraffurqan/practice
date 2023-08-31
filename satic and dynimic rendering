@@ -1,0 +1,88 @@
+// this code repersent isr incremental static regeneration  ye mehtod next13 kA DYA HUE hai is static page developer
+but har 5 secnod me new data fetch ye apki marzi hai ap is me kitan time dete ha
+
+let url =("https://api.quotable.io/random?tags=technology")
+const getData =async()=>{
+    let res =await fetch(url,{
+        next:{
+          revalidate:5
+        }
+    })
+    const data=await res.json()
+    return data
+};
+
+
+interface Data {
+    _id:any;
+    content:any;
+}
+export default async function  Textarea(){
+  const res:Data = await  getData(); 
+  return (
+    
+    <div>   
+   {res.content}         
+
+    </div>
+  )
+}
+
+// ye static page ka code jo html ka page create kr ke show kr dega
+
+let url =("https://api.quotable.io/random?tags=technology")
+const getData =async()=>{
+    let res =await fetch(url,{
+        cache:"force-cache" // create by dafault or set static page 
+    })
+    const data=await res.json()
+    return data
+};
+
+
+interface Data {
+    _id:any;
+    content:any;
+}
+export default async function  Textarea(){
+  const res:Data = await  getData(); 
+  return (
+    
+    <div>   
+   {res.content}         
+
+    </div>
+  )
+}
+
+
+ // or ye dynamic site ka code hai but is me har bar refresh me new page create hoge show hoga is behtar isr top wala hai jo page to crete kr data but apki mutabiq data fetch krta hai
+
+
+ 
+let url =("https://api.quotable.io/random?tags=technology")
+const getData =async()=>{
+    let res =await fetch(url,{
+      cache:"no-store" //* no store create dynamic page 
+    })
+    const data=await res.json()
+    return data
+};
+
+
+interface Data {
+    _id:any;
+    content:any;
+}
+export default async function  Textarea(){
+  const res:Data = await  getData(); 
+  return (
+    
+    <div>   
+   {res.content}         
+
+    </div>
+  )
+}
+
+
